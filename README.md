@@ -1,6 +1,11 @@
 # NeuroTools
 A Python Toolbox for Statistics and Signal Processing (EEG and bio).
 
+|Name|NeuroTools|
+|----------------|---|
+|Latest Version|[![](https://img.shields.io/badge/version-0.0.1-brightgreen.svg)](https://github.com/neuropsychology/NeuroTools.py)|
+|Authors|[![](https://img.shields.io/badge/CV-D._Makowski-purple.svg?colorB=9C27B0)](https://cdn.rawgit.com/neuropsychology/Organization/master/CVs/DominiqueMakowski.pdf)|
+
 ---
 
 **Warning: these functions might be, for now, NOT GENERALIZABLE to your data as I've intented them specifically for my personal use. However, with time, I'll try to open and expand them as much as I can.**
