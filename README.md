@@ -24,3 +24,11 @@ Run the following:
 ```bash
 pip install https://github.com/neuropsychology/NeuroTools.py/zipball/master
 ```
+
+## Example
+
+```python
+import neurotools as nt
+mylist = ["a","a","b","a","a","a","c","c","b","b"]
+nt.remove_following_duplicates(mylist)
+```
