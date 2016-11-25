@@ -33,13 +33,8 @@ def extract_peak(channel_data, value="max", size=0):
 
     Example
     ----------
-    >>> import neuropsydia as n
-    >>> n.start(False)
-    >>>
     >>> channel_data = evoked.pick_channels(["C1", "C2"]).to_data_frame()
-    >>> peak, time_peak = extract_peak(channel_data, size=2)
-    >>>
-    >>> n.close()
+    >>> peak, time_peak = nt.extract_peak(channel_data, size=2)
 
     Authors
     ----------
@@ -99,12 +94,8 @@ def binarize_signal(signal, treshold, upper=True):
 
     Example
     ----------
-    >>> import neuropsydia as n
-    >>> n.start(False)
-    >>>
-    >>> binary_signal = n.binarize_signal(signal, treshold=4)
-    >>>
-    >>> n.close()
+    >>> import neurotools as nt
+    >>> binary_signal = nt.binarize_signal(signal, treshold=4)
 
     Authors
     ----------
@@ -159,12 +150,8 @@ def find_events_onset(signal, treshold, upper=True, time_index=None):
 
     Example
     ----------
-    >>> import neuropsydia as n
-    >>> n.start(False)
-    >>>
-    >>> events_onset = n.events_onset(signal, treshold=4)
-    >>>
-    >>> n.close()
+    >>> import neurotools as nt
+    >>> events_onset = nt.events_onset(signal, treshold=4)
 
     Authors
     ----------
@@ -227,12 +214,8 @@ def select_events(signal, treshold, upper=True, time_index=None, number="all", a
 
     Example
     ----------
-    >>> import neuropsydia as n
-    >>> n.start(False)
-    >>>
-    >>> events_onset = n.select_events(signal, treshold=4)
-    >>>
-    >>> n.close()
+    >>> import neurotools as nt
+    >>> events_onset = nt.select_events(signal, treshold=4)
 
     Authors
     ----------
@@ -276,7 +259,6 @@ def select_events(signal, treshold, upper=True, time_index=None, number="all", a
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-
 def create_epochs(signal, events_onset, sampling_rate, onset=-250, duration=1000, stimuli_name=None):
     """
     Create a dataframe of epoched data.
@@ -297,12 +279,8 @@ def create_epochs(signal, events_onset, sampling_rate, onset=-250, duration=1000
 
     Example
     ----------
-    >>> import neuropsydia as n
-    >>> n.start(False)
-    >>>
-    >>> epochs = n.create_epochs(signal)
-    >>>
-    >>> n.close()
+    >>> import neurotools as nt
+    >>> epochs = nt.create_epochs(signal)
 
     Authors
     ----------
@@ -343,15 +321,15 @@ def create_epochs(signal, events_onset, sampling_rate, onset=-250, duration=1000
             epochs.columns = stimuli_name
     return(epochs)
 
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
 
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
 def create_evoked(epochs, events, average=True):
     """
     Create a dictionary containing evoked data.
@@ -372,13 +350,9 @@ def create_evoked(epochs, events, average=True):
 
     Example
     ----------
-    >>> import neuropsydia as n
-    >>> n.start(False)
-    >>>
+    >>> import neurotools as nt
     >>> events = ["emotion", "neutral", "emotion", "neutral"]
-    >>> evoked = n.create_evoked(epochs)
-    >>>
-    >>> n.close()
+    >>> evoked = nt.create_evoked(epochs)
 
     Authors
     ----------
