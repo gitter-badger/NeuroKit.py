@@ -1,32 +1,12 @@
-import mne
-import nolds  # Fractal
+from .signal import select_events
+from .miscellaneous import Time
+from .miscellaneous import remove_following_duplicates
+
 import numpy as np
 import pandas as pd
+import mne
+import nolds  # Fractal
 import re
-import matplotlib
-from matplotlib import pyplot as plt
-import neuropsydia as n
-n.start(False)
-
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-def see_channel(channel, ticks=50):
-    """
-    """
-    data, times = channel[:]
-    plt.clf()
-    plt.figure(figsize=(40,4))
-    plt.xticks(list(range(0,int(max(times)),50)))
-    plt.plot(times, data.T)
-    plt.show()
-#    plt.savefig('plot.png', format='png', dpi=1000)
-#    plt.savefig('foo.png')
 
 
 # ==============================================================================
@@ -49,7 +29,53 @@ def load_brainvision_raw(participant, path="data/", experiment="", system="brain
         raw.set_eeg_reference(reference)
     return(raw)
 
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+# ==============================================================================
+def eeg_create_events(events_onset, events_list):
+    """
+    Create MNE compatible events.
 
+    Parameters
+    ----------
+    events_onset = list
+        Events onset (from find_events() or select_events()).
+    events_list = list
+        A list of equal length containing the stimuli types/conditions.
+
+
+    Returns
+    ----------
+    tuple
+        events and a dictionary with event's names.
+
+    Example
+    ----------
+    >>> import neurotools as nt
+    >>> events_onset = nt.create_mne_events(events_onset, trigger_list)
+
+    Authors
+    ----------
+    Dominique Makowski
+
+    Dependencies
+    ----------
+    None
+    """
+    event_id = {}
+    event_names = list(set(events_list))
+    event_index = [1, 2, 3, 4, 5, 32]
+    for i in enumerate(event_names):
+        events_list = [event_index[i[0]] if x==i[1] else x for x in events_list]
+        event_id[i[1]] = event_index[i[0]]
+
+    events = np.array([events_onset, [0]*len(events_onset), events_list]).T
+    return(events, event_id)
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
@@ -65,7 +91,7 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
     if pause is not None:
         after = pause
         before = pause
-    events_onset, events_time = n.select_events(signal[0],
+    events_onset, events_time = select_events(signal[0],
                                             treshold=treshold,
                                             upper=upper,
                                             time_index=time_index,
@@ -85,7 +111,7 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
         events_list = list(triggers[condition1] + "/" + triggers[condition2])
 
 
-    events, event_id = n.create_mne_events(events_onset, events_list)
+    events, event_id = eeg_create_events(events_onset, events_list)
     raw.add_events(events, stim_channel="STI 014")
     return(raw, events, event_id)
 
@@ -343,6 +369,7 @@ def eeg_epoching(raw, events, event_id, tmin=-0.2, tmax=1, eog_reject=600e-6, pr
 def eeg_fractal_dim(epochs, entropy=True, hurst=True, dfa=False, lyap_r=False, lyap_e=False):
     """
     """
+    clock = Time()
 
     df = epochs.to_data_frame(index=["epoch", "time", "condition"])
 
@@ -371,7 +398,7 @@ def eeg_fractal_dim(epochs, entropy=True, hurst=True, dfa=False, lyap_r=False, l
         data["Lyapunov_E"] = {}
 
 
-    n.time.reset()
+    clock.reset()
     for epoch in set(epochs):
         subset = df.loc[epoch]
 
@@ -412,7 +439,7 @@ def eeg_fractal_dim(epochs, entropy=True, hurst=True, dfa=False, lyap_r=False, l
             data["Lyapunov_E"][epoch] = np.mean(data["Lyapunov_E"][epoch])
 
 
-        time = n.time.get(reset=False)/1000
+        time = clock.get(reset=False)/1000
         time = time/(epoch+1)
         time = (time * (len(set(epochs))-epoch))/60
         print(str(round((epoch+1)/len(set(epochs))*100,2)) + "% complete, remaining time: " + str(round(time, 2)) + 'min')
@@ -423,7 +450,7 @@ def eeg_fractal_dim(epochs, entropy=True, hurst=True, dfa=False, lyap_r=False, l
     for i in range(len(events)):
         list_events.append(events[i] + "_" + str(epochs[i]))
 
-    list_events = n.remove_following_duplicates(list_events)
+    list_events = remove_following_duplicates(list_events)
     list_events = [re.sub('_\d+', '', i) for i in list_events]
     df["Epoch"] = list_events
     return(df)

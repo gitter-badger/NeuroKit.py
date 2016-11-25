@@ -6,7 +6,6 @@ import plotly.offline as py
 import plotly.graph_objs as go
 import scipy
 import scipy.stats
-import random
 import math
 # ==============================================================================
 # ==============================================================================
