@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 
-from .stats import z_score  # process_EDA()
+from .statistics import z_score  # process_EDA()
 from .miscellaneous import get_creation_date  # acq_to_df()
 
 import cvxopt as cv  # process_EDA()
