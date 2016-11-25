@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .signal import select_events
 from .miscellaneous import Time
 from .miscellaneous import remove_following_duplicates
