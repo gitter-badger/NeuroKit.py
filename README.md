@@ -1,4 +1,4 @@
-# NeuroTools
+# NeuroTools.py
 A Python Toolbox for Statistics and Signal Processing (EEG, EDA, ECG, EMG...).
 
 |Name|NeuroTools|
