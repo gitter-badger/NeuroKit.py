@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
 name = "neurotools",
-description = ("A Python Toolbox for Statistics and Signal Processing (EEG and bio)."),
+description = ("A Python Toolbox for Statistics and Signal Processing (EEG, EDA, ECG, EMG...)."),
 version = "0.0.1",
 license = "MIT",
 author = "Dominique Makowski",
