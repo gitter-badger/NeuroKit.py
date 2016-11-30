@@ -1,9 +1,9 @@
 # NeuroTools
-A Python Toolbox for Statistics and Signal Processing (EEG and bio).
+A Python Toolbox for Statistics and Signal Processing (EEG, EDA, ECG, EMG...).
 
 |Name|NeuroTools|
 |----------------|---|
-|Latest Version|[![](https://img.shields.io/badge/version-0.0.1-brightgreen.svg)](https://github.com/neuropsychology/NeuroTools.py)|
+|Latest Version|[![](https://img.shields.io/badge/version-0.0.1-brightred.svg)](https://github.com/neuropsychology/NeuroTools.py)|
 |Authors|[![](https://img.shields.io/badge/CV-D._Makowski-purple.svg?colorB=9C27B0)](https://cdn.rawgit.com/neuropsychology/Organization/master/CVs/DominiqueMakowski.pdf)|
 
 ---
@@ -14,7 +14,7 @@ A Python Toolbox for Statistics and Signal Processing (EEG and bio).
 
 Features:
 
-- EEG (based on [mne](http://martinos.org/mne/stable/index.html))
+- EEG (wrapper functions based on [mne](http://martinos.org/mne/stable/index.html))
 - EDA
 
 ## Install
