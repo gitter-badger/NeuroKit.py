@@ -138,7 +138,7 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-def eeg_load(participant, path="", experiment="", system="brainvision", reference=None, stimdata_extension=".xlsx", stim_channel="PHOTO", treshold=0.04, upper=False, number=45, pause=None, after=0, before=None, condition1=None, condition2=None, order_column="Order"):
+def eeg_load(participant, path="", experiment="", system="brainvision", reference=None, stimdata_extension=".xlsx", stim_channel="PHOTO", treshold=0.04, upper=False, number=45, pause=None, after=0, before=None, conditions=None, order_column="Order"):
     """
     """
     raw = load_brainvision_raw(participant, path=path, experiment=experiment, system=system, reference=reference)
@@ -155,7 +155,6 @@ def eeg_load(participant, path="", experiment="", system="brainvision", referenc
                                            pause=pause,
                                            after=after,
                                            before=before,
-                                           condition1=condition1,
-                                           condition2=condition2,
+                                           conditions=conditions,
                                            order_column=order_column)
     return(raw, events, event_id)
