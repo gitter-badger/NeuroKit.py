@@ -113,7 +113,7 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
     if conditions is not None:
         triggers = {}
         for condition in list(conditions):
-            triggers[condition] = trigger_list[condition][0:number]
+            triggers[condition] = trigger_list[condition][0:number-1]
 
 
         events_list = []
