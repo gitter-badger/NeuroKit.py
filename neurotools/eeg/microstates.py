@@ -1,12 +1,8 @@
 """
 Microstates submodule.
 """
-from .eeg import eeg_select_electrodes
-from .miscellaneous import Time
-
 import numpy as np
 import pandas as pd
-import mne
 
 
 # ==============================================================================
