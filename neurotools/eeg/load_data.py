@@ -112,8 +112,16 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
 
     triggers = {}
     if pause is not None:
+        if condition1 is not None:
             triggers[condition1] = trigger_list[condition1][0:number*2]
+        if condition2 is not None:
             triggers[condition2] = trigger_list[condition2][0:number*2]
+    else:
+        if condition1 is not None:
+            triggers[condition1] = trigger_list[condition1]
+        if condition2 is not None:
+            triggers[condition2] = trigger_list[condition2]
+
     if condition2 is None:
         events_list = list(triggers[condition1])
     else:
