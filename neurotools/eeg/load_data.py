@@ -83,7 +83,7 @@ def eeg_create_events(events_onset, events_list):
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", experiment="", stim_channel="PHOTO", treshold=0.04, upper=False, number=45, pause=None, after=0, before=None, condition1=None, condition2=None, order_column="Order"):
+def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", experiment="", stim_channel="PHOTO", treshold=0.04, upper=False, number=90, pause=None, after=0, before=None, conditions=None, order_column="Order"):
     """
     """
     signal, time_index = raw.copy().pick_channels([stim_channel])[:]
@@ -94,7 +94,7 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
                                             treshold=treshold,
                                             upper=upper,
                                             time_index=time_index,
-                                            number=number,
+                                            number=int(number/2),
                                             after=after,
                                             before=before)
     if stimdata_extension == ".xlsx":
@@ -110,27 +110,25 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
     except KeyError:
         print("NeuroTools Warning: add_events(): Wrong order_column provided. Dataframe will remain unsorted.")
 
-    triggers = {}
-    if pause is not None:
-        if condition1 is not None:
-            triggers[condition1] = trigger_list[condition1][0:number*2]
-        if condition2 is not None:
-            triggers[condition2] = trigger_list[condition2][0:number*2]
-    else:
-        if condition1 is not None:
-            triggers[condition1] = trigger_list[condition1]
-        if condition2 is not None:
-            triggers[condition2] = trigger_list[condition2]
-
-    if condition2 is None:
-        events_list = list(triggers[condition1])
-    else:
-        events_list = list(triggers[condition1] + "/" + triggers[condition2])
+    if conditions is not None:
+        triggers = {}
+        for condition in list(conditions):
+            triggers[condition] = trigger_list[condition][0:number]
 
 
-    events, event_id = eeg_create_events(events_onset, events_list)
-    raw.add_events(events, stim_channel="STI 014")
-    return(raw, events, event_id)
+        events_list = []
+        conditions = triggers.keys()
+        old_cond = conditions[0]
+        for condition in conditions:
+            if condition != old_cond:
+                events_list = [m + "/" + n for m, n in zip(triggers[old_cond], triggers[condition])]
+                old_cond = condition
+
+
+        events, event_id = eeg_create_events(events_onset, events_list)
+        raw.add_events(events, stim_channel="STI 014")
+        return(raw, events, event_id)
+    return(raw)
 
 # ==============================================================================
 # ==============================================================================
