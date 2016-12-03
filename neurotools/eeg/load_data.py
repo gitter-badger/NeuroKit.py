@@ -83,7 +83,7 @@ def eeg_create_events(events_onset, events_list):
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", experiment="", stim_channel="PHOTO", treshold=0.04, upper=False, number=45, pause=None, after=0, before=None, condition1=None, condition2=None):
+def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", experiment="", stim_channel="PHOTO", treshold=0.04, upper=False, number=45, pause=None, after=0, before=None, condition1=None, condition2=None, order_column="Order"):
     """
     """
     signal, time_index = raw.copy().pick_channels([stim_channel])[:]
@@ -103,7 +103,12 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
         trigger_list = pd.read_csv(path + participant + "/" + participant + "_" + experiment + stimdata_extension)
     else:
         print("NeuroTools Error: add_events(): Wrong stimdata_extension extension")
-    trigger_list = trigger_list.sort_values("Order")
+
+    # Sort the df
+    try:
+        trigger_list = trigger_list.sort_values(order_column)
+    except KeyError:
+        print("NeuroTools Warning: add_events(): Wrong order_column provided. Dataframe will remain unsorted.")
 
     triggers = {}
     if pause is not None:
@@ -127,7 +132,7 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-def eeg_load(participant, path="", experiment="", system="brainvision", reference=None, stimdata_extension=".xlsx", stim_channel="PHOTO", treshold=0.04, upper=False, number=45, pause=None, after=0, before=None, condition1=None, condition2=None):
+def eeg_load(participant, path="", experiment="", system="brainvision", reference=None, stimdata_extension=".xlsx", stim_channel="PHOTO", treshold=0.04, upper=False, number=45, pause=None, after=0, before=None, condition1=None, condition2=None, order_column="Order"):
     """
     """
     raw = load_brainvision_raw(participant, path=path, experiment=experiment, system=system, reference=reference)
@@ -145,5 +150,6 @@ def eeg_load(participant, path="", experiment="", system="brainvision", referenc
                                            after=after,
                                            before=before,
                                            condition1=condition1,
-                                           condition2=condition2)
+                                           condition2=condition2,
+                                           order_column=order_column)
     return(raw, events, event_id)
