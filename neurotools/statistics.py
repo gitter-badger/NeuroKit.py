@@ -7,57 +7,7 @@ import plotly.graph_objs as go
 import scipy
 import scipy.stats
 import math
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-# ==============================================================================
-def read_data(filename, path="", localization="US"):
-    """
-    Load the datafile into a pandas' dataframe.
 
-    Parameters
-    ----------
-    NA
-
-    Returns
-    ----------
-    NA
-
-    Example
-    ----------
-    NA
-
-    Authors
-    ----------
-    Dominique Makowski
-
-    Dependencies
-    ----------
-    - pandas
-    """
-    filename = path + filename
-
-    if localization == "FR" or localization == "FRA" or localization == "French" or localization == "France":
-        sep = ";"
-        decimal = ","
-    else:
-        sep = ","
-        decimal = "."
-
-    if ".csv" in filename:
-        try:
-            df = pd.read_csv(filename, sep=sep, decimal=decimal, encoding="utf-8")
-        except UnicodeDecodeError:
-            df = pd.read_csv(filename, sep=sep, decimal=decimal, encoding="cp1125")
-    elif ".xls" in filename or ".xlsx" in filename:
-        df = pd.read_excel(filename, encoding="utf-8")
-    else:
-        print("NEUROPSYDIA ERROR: read_data(): wrong extension of the datafile")
-    return(df)
 
 
 # ==============================================================================
