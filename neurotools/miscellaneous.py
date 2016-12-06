@@ -121,7 +121,7 @@ def save_data(df, filename="data", extension="all", participant_id="", path="", 
         df.to_csv(path + "/csv/" + participant_id + "_" + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
         if os.path.exists(path + "/excel/") is False:
             os.makedirs(path + "/excel/")
-        df.to_csv(path + "/excel/" + participant_id + "_" + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
+        df.to_excel(path + "/excel/" + participant_id + "_" + filename + ext, encoding="utf-8")
 
 # ==============================================================================
 # ==============================================================================
