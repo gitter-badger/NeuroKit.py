@@ -39,16 +39,19 @@ def read_data(filename, extension="", participant_id="", path="", localization="
     """
     # Find a corresponding file
     file = filename
-    while os.path.isfile(file) is False:
+    if os.path.isfile(file) is False:
         file = path + filename + extension
+    if os.path.isfile(file) is False:
         file = path + participant_id + filename + extension
+    if os.path.isfile(file) is False:
         if ".csv" in file:
-            file = path + "/csv/" + participant_id + filename + extension
+            file = path + "/csv/" + participant_id + "_" + filename + extension
         elif ".xlsx" in file:
-            file = path + "/excel/" + participant_id + filename + extension
+            file = path + "/excel/" + participant_id + "_" + filename + extension
         else:
             extension = ".xlsx"
-
+    if os.path.isfile(file) is False:
+        print("NEUROTOOLS ERROR: read_data(): file's path " + file + " not found!")
 
     if localization == "FR" or localization == "FRA" or localization == "French" or localization == "France":
         sep = ";"
@@ -63,9 +66,10 @@ def read_data(filename, extension="", participant_id="", path="", localization="
         except UnicodeDecodeError:
             df = pd.read_csv(file, sep=sep, decimal=decimal, encoding="cp1125")
     elif ".xls" in file or ".xlsx" in file:
+        print(file)
         df = pd.read_excel(file, encoding="utf-8")
     else:
-        print("NEUROPSYDIA ERROR: read_data(): wrong extension of the datafile")
+        print("NEUROTOOLS ERROR: read_data(): wrong extension of the datafile.")
     return(df)
 
 
@@ -114,10 +118,10 @@ def save_data(df, filename="data", extension="all", participant_id="", path="", 
     for ext in list(extension):
         if os.path.exists(path + "/csv/") is False:
             os.makedirs(path + "/csv/")
-        df.to_csv(path + "/csv/" + participant_id + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
+        df.to_csv(path + "/csv/" + participant_id + "_" + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
         if os.path.exists(path + "/excel/") is False:
             os.makedirs(path + "/excel/")
-        df.to_csv(path + "/excel/" + participant_id + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
+        df.to_csv(path + "/excel/" + participant_id + "_" + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
 
 # ==============================================================================
 # ==============================================================================
