@@ -116,12 +116,16 @@ def save_data(df, filename="data", extension="all", participant_id="", path="", 
         extension = [".csv", ".xlsx"]
 
     for ext in list(extension):
-        if os.path.exists(path + "/csv/") is False:
-            os.makedirs(path + "/csv/")
-        df.to_csv(path + "/csv/" + participant_id + "_" + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
-        if os.path.exists(path + "/excel/") is False:
-            os.makedirs(path + "/excel/")
-        df.to_excel(path + "/excel/" + participant_id + "_" + filename + ext, encoding="utf-8")
+        if ext == ".csv":
+            if os.path.exists(path + "/csv/") is False:
+                os.makedirs(path + "/csv/")
+            df.to_csv(path + "/csv/" + participant_id + "_" + filename + ext, sep=sep, index=index, decimal=decimal, encoding="utf-8")
+        elif ext == ".xlsx":
+            if os.path.exists(path + "/excel/") is False:
+                os.makedirs(path + "/excel/")
+            df.to_excel(path + "/excel/" + participant_id + "_" + filename + ext, encoding="utf-8")
+        else:
+            print("NEUROTOOLS ERROR: save_data(): wrong extension specified.")
 
 # ==============================================================================
 # ==============================================================================
