@@ -1,4 +1,4 @@
-# NeuroTools.py
+# NeuroToolbox.py
 A Python Toolbox for Statistics and Signal Processing (EEG, EDA, ECG, EMG...).
 
 |Name|NeuroTools|
@@ -22,13 +22,13 @@ Features:
 Run the following:
 
 ```bash
-pip install https://github.com/neuropsychology/NeuroTools.py/zipball/master
+pip install https://github.com/neuropsychology/NeuroToolbox.py/zipball/master
 ```
 
 ## Example
 
 ```python
-import neurotools as nt
+import neurotoolbox as nt
 mylist = ["a","a","b","a","a","a","c","c","b","b"]
 nt.remove_following_duplicates(mylist)
 ```
