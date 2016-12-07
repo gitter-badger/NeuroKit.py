@@ -55,8 +55,8 @@ def eeg_create_events(events_onset, events_list):
 
     Example
     ----------
-    >>> import neurobox as nb
-    >>> events_onset = nb.create_mne_events(events_onset, trigger_list)
+    >>> import neurokit as nk
+    >>> events_onset = nk.create_mne_events(events_onset, trigger_list)
 
     Authors
     ----------
@@ -102,13 +102,13 @@ def add_events(raw, participant, path="data/", stimdata_extension=".xlsx", exper
     elif stimdata_extension == ".csv":
         trigger_list = pd.read_csv(path + participant + "/" + participant + "_" + experiment + stimdata_extension)
     else:
-        print("NeuroBox Error: add_events(): Wrong stimdata_extension extension")
+        print("NeuroKit Error: add_events(): Wrong stimdata_extension extension")
 
     # Sort the df
     try:
         trigger_list = trigger_list.sort_values(order_column)
     except KeyError:
-        print("NeuroBox Warning: add_events(): Wrong order_column provided. Dataframe will remain unsorted.")
+        print("NeuroKit Warning: add_events(): Wrong order_column provided. Dataframe will remain unsorted.")
 
     if conditions is not None:
         triggers = {}

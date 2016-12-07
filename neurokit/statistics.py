@@ -240,19 +240,15 @@ def t_test(var1, var2, data=None, var1_name="VARIABLE-1", var2_name="VARIABLE-2"
     Example
     ----------
     >>> import numpy as np
-    >>> import neuropsydia as n
-    >>> n.start(False)
-
+    >>> import neurokit as nk
     >>> # generate variables
     >>> variable1 = np.random.normal(3, 1, 1000)  # get a normal distribution of size = 1000
     >>> variable2 = np.random.normal(2.5, 0.1.2, 1000)  # get a second normal distribution of size = 1000
     >>> factor = ["a","a","b","b"] * 250  # get a factor with a and b levels of size = 1000
-
     >>> # paired-samples t-test
-    >>> n.t_test(var1, var2)
-
+    >>> nk.t_test(var1, var2)
     >>> # independent t-test
-    >>> n.t_test(var1, factor)
+    >>> nk.t_test(var1, factor)
 
     Authors
     ----------
@@ -610,13 +606,16 @@ def dprime(n_Hit=None, n_Miss=None, n_FA=None, n_CR=None):
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-def identify_outliers(serie, treshold=3):
+def identify_outliers(serie, treshold=2.58):
     """
     Identify outliers.
 
     Parameters
     ----------
-    NA
+    serie = list or array
+        data
+    treshold = float
+        maximum deviation (in terms of standart deviation). Following a gaussian distribution, 2.58 = rejecting 1%, 2.33 = rejecting 2%, 1.96 = 5% and 1.28 = rejecting 10%.
 
     Returns
     ----------
