@@ -1,9 +1,9 @@
-# NeuroBox.py
+# NeuroKit.py
 A Python Toolbox for Statistics and Signal Processing (EEG, EDA, ECG, EMG...).
 
-|Name|NeuroBox|
+|Name|NeuroKit|
 |----------------|---|
-|Latest Version|[![](https://img.shields.io/badge/version-0.0.1-brightred.svg)](https://github.com/neuropsychology/NeuroTools.py)|
+|Latest Version|[![](https://img.shields.io/badge/version-0.0.1-brightred.svg)](https://github.com/neuropsychology/NeuroKit.py)|
 |Authors|[![](https://img.shields.io/badge/CV-D._Makowski-purple.svg?colorB=9C27B0)](https://cdn.rawgit.com/neuropsychology/Organization/master/CVs/DominiqueMakowski.pdf)|
 
 ---
@@ -22,13 +22,13 @@ Features:
 Run the following:
 
 ```bash
-pip install https://github.com/neuropsychology/NeuroBox.py/zipball/master
+pip install https://github.com/neuropsychology/NeuroKit.py/zipball/master
 ```
 
 ## Example
 
 ```python
-import neurobox as nb
+import neurokit as nk
 mylist = ["a","a","b","a","a","a","c","c","b","b"]
-nt.remove_following_duplicates(mylist)
+nk.remove_following_duplicates(mylist)
 ```
