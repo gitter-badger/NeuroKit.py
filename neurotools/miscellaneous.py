@@ -66,7 +66,6 @@ def read_data(filename, extension="", participant_id="", path="", localization="
         except UnicodeDecodeError:
             df = pd.read_csv(file, sep=sep, decimal=decimal, encoding="cp1125")
     elif ".xls" in file or ".xlsx" in file:
-        print(file)
         df = pd.read_excel(file, encoding="utf-8")
     else:
         print("NEUROTOOLS ERROR: read_data(): wrong extension of the datafile.")
