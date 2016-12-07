@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-name = "neurotools",
+name = "neurobox",
 description = ("A Python Toolbox for Statistics and Signal Processing (EEG, EDA, ECG, EMG...)."),
 version = "0.0.1",
 license = "MIT",
@@ -20,8 +20,8 @@ install_requires = [
 dependency_links=[],
 long_description = open('README.md').read(),
 keywords = "python signal processing EEG EDA",
-url = "https://github.com/neuropsychology/NeuroTools.py",
-download_url = 'https://github.com/neuropsychology/NeuroTools.py/tarball/0.0.1',
+url = "https://github.com/neuropsychology/NeuroBox.py",
+download_url = 'https://github.com/neuropsychology/NeuroBox.py/tarball/0.0.1',
 test_suite='nose.collector',
 tests_require=['nose'],
 classifiers = [
