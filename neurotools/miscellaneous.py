@@ -13,7 +13,7 @@ import platform
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-def read_data(filename, extension="", participant_id="", path="", localization="US"):
+def read_data(filename, extension="", participant_id="", path="", localization="US", print_warning=True):
     """
     Load the datafile into a pandas' dataframe.
 
@@ -51,7 +51,8 @@ def read_data(filename, extension="", participant_id="", path="", localization="
         else:
             extension = ".xlsx"
     if os.path.isfile(file) is False:
-        print("NEUROTOOLS ERROR: read_data(): file's path " + file + " not found!")
+        if print_warning is True:
+            print("NeuroTools Error: read_data(): file's path " + file + " not found!")
 
     if localization == "FR" or localization == "FRA" or localization == "French" or localization == "France":
         sep = ";"
@@ -68,7 +69,8 @@ def read_data(filename, extension="", participant_id="", path="", localization="
     elif ".xls" in file or ".xlsx" in file:
         df = pd.read_excel(file, encoding="utf-8")
     else:
-        print("NEUROTOOLS ERROR: read_data(): wrong extension of the datafile.")
+        if print_warning is True:
+            print("NeuroTools Error: read_data(): wrong extension of the datafile.")
     return(df)
 
 
@@ -80,7 +82,7 @@ def read_data(filename, extension="", participant_id="", path="", localization="
 # ==============================================================================
 # ==============================================================================
 # ==============================================================================
-def save_data(df, filename="data", extension="all", participant_id="", path="", localization="US", index=False):
+def save_data(df, filename="data", extension="all", participant_id="", path="", localization="US", index=False, print_warning=True):
     """
     Save the datafile into a pandas' dataframe.
 
@@ -124,7 +126,8 @@ def save_data(df, filename="data", extension="all", participant_id="", path="", 
                 os.makedirs(path + "/excel/")
             df.to_excel(path + "/excel/" + participant_id + "_" + filename + ext, encoding="utf-8")
         else:
-            print("NEUROTOOLS ERROR: save_data(): wrong extension specified.")
+            if print_warning is True:
+                print("NeuroTools Error: save_data(): wrong extension specified.")
 
 # ==============================================================================
 # ==============================================================================
