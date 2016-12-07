@@ -34,7 +34,7 @@ def extract_peak(channel_data, value="max", size=0):
     Example
     ----------
     >>> channel_data = evoked.pick_channels(["C1", "C2"]).to_data_frame()
-    >>> peak, time_peak = nt.extract_peak(channel_data, size=2)
+    >>> peak, time_peak = nb.extract_peak(channel_data, size=2)
 
     Authors
     ----------
@@ -94,8 +94,8 @@ def binarize_signal(signal, treshold, upper=True):
 
     Example
     ----------
-    >>> import neurotools as nt
-    >>> binary_signal = nt.binarize_signal(signal, treshold=4)
+    >>> import neurobox as nb
+    >>> binary_signal = nb.binarize_signal(signal, treshold=4)
 
     Authors
     ----------
@@ -150,8 +150,8 @@ def find_events_onset(signal, treshold, upper=True, time_index=None):
 
     Example
     ----------
-    >>> import neurotools as nt
-    >>> events_onset = nt.events_onset(signal, treshold=4)
+    >>> import neurobox as nb
+    >>> events_onset = nb.events_onset(signal, treshold=4)
 
     Authors
     ----------
@@ -214,8 +214,8 @@ def select_events(signal, treshold, upper=True, time_index=None, number="all", a
 
     Example
     ----------
-    >>> import neurotools as nt
-    >>> events_onset = nt.select_events(signal, treshold=4)
+    >>> import neurobox as nb
+    >>> events_onset = nb.select_events(signal, treshold=4)
 
     Authors
     ----------
@@ -279,8 +279,8 @@ def create_epochs(signal, events_onset, sampling_rate, onset=-250, duration=1000
 
     Example
     ----------
-    >>> import neurotools as nt
-    >>> epochs = nt.create_epochs(signal)
+    >>> import neurobox as nb
+    >>> epochs = nb.create_epochs(signal)
 
     Authors
     ----------
@@ -350,9 +350,9 @@ def create_evoked(epochs, events, average=True):
 
     Example
     ----------
-    >>> import neurotools as nt
+    >>> import neurobox as nb
     >>> events = ["emotion", "neutral", "emotion", "neutral"]
-    >>> evoked = nt.create_evoked(epochs)
+    >>> evoked = nb.create_evoked(epochs)
 
     Authors
     ----------

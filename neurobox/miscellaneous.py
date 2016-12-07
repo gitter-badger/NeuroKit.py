@@ -52,7 +52,7 @@ def read_data(filename, extension="", participant_id="", path="", localization="
             extension = ".xlsx"
     if os.path.isfile(file) is False:
         if print_warning is True:
-            print("NeuroTools Error: read_data(): file's path " + file + " not found!")
+            print("NeuroBox Error: read_data(): file's path " + file + " not found!")
 
     if localization == "FR" or localization == "FRA" or localization == "French" or localization == "France":
         sep = ";"
@@ -70,7 +70,7 @@ def read_data(filename, extension="", participant_id="", path="", localization="
         df = pd.read_excel(file, encoding="utf-8")
     else:
         if print_warning is True:
-            print("NeuroTools Error: read_data(): wrong extension of the datafile.")
+            print("NeuroBox Error: read_data(): wrong extension of the datafile.")
     return(df)
 
 
@@ -127,7 +127,7 @@ def save_data(df, filename="data", extension="all", participant_id="", path="", 
             df.to_excel(path + "/excel/" + participant_id + "_" + filename + ext, encoding="utf-8")
         else:
             if print_warning is True:
-                print("NeuroTools Error: save_data(): wrong extension specified.")
+                print("NeuroBox Error: save_data(): wrong extension specified.")
 
 # ==============================================================================
 # ==============================================================================
@@ -155,8 +155,8 @@ class Time():
 
     Example
     ----------
-    >>> import neurotools as nt
-    >>> myclock = nt.Time()
+    >>> import neurobox as nb
+    >>> myclock = nb.Time()
     >>> time_passed_since_myclock_creation = myclock.get()
     >>> myclock.reset()
     >>> time_passed_since_reset = myclock.get()
@@ -186,10 +186,10 @@ class Time():
 
         Example
         ----------
-        >>> import neurotools as nt
-        >>> time_passed_since_neuropsydia_loading = nt.time.get()
-        >>> nt.time.reset()
-        >>> time_passed_since_reset = nt.time.get()
+        >>> import neurobox as nb
+        >>> time_passed_since_neuropsydia_loading = nb.time.get()
+        >>> nb.time.reset()
+        >>> time_passed_since_reset = nb.time.get()
 
         Authors
         ----------
@@ -217,10 +217,10 @@ class Time():
 
         Example
         ----------
-        >>> import neurotools as nt
-        >>> time_passed_since_neurotools_loading = nt.time.get()
-        >>> nt.time.reset()
-        >>> time_passed_since_reset = nt.time.get()
+        >>> import neurobox as nb
+        >>> time_passed_since_neurobox_loading = nb.time.get()
+        >>> nb.time.reset()
+        >>> time_passed_since_reset = nb.time.get()
 
         Authors
         ----------
@@ -261,9 +261,9 @@ def remove_following_duplicates(mylist):
 
     Example
     ----------
-    >>> import neurotools as nt
+    >>> import neurobox as nb
     >>> mylist = ["a","a","b","a","a","a","c","c","b","b"]
-    >>> nt.remove_following_duplicates(mylist)
+    >>> nb.remove_following_duplicates(mylist)
 
     Authors
     ----------
@@ -309,8 +309,8 @@ def get_creation_date(path_to_file):
 
     Example
     ----------
-    >>> import neurotools as nt
-    >>> date = nt.get_creation_date(path)
+    >>> import neurobox as nb
+    >>> date = nb.get_creation_date(path)
 
     Authors
     ----------
