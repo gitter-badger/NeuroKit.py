@@ -7,7 +7,7 @@ A Python Toolbox for Statistics and Neurophysiological Signal Processing (EEG, E
 
 |Name|NeuroKit|
 |----------------|---|
-|Latest Version|[![](https://img.shields.io/badge/version-0.0.1-brightred.svg)](https://github.com/neuropsychology/NeuroKit.py)|
+|Latest Version|[![](https://img.shields.io/badge/version-0.0.1-brightred.svg)](https://pypi.python.org/pypi/neurokit)|
 |Authors|[![](https://img.shields.io/badge/CV-D._Makowski-purple.svg?colorB=9C27B0)](https://cdn.rawgit.com/neuropsychology/Organization/master/CVs/DominiqueMakowski.pdf)|
 
 ---
